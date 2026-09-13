@@ -58,8 +58,9 @@ function App() {
   const { roomId } = appRoute.useParams();
 
   useEffect(() => {
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const socket = new WebSocket(
-      `${import.meta.env.VITE_SIGOPER_COMPANION_WS_URL}/${roomId}`,
+      `${protocol}//${window.location.host}/ws/${roomId}`,
     );
     wsRef.current = socket;
 
