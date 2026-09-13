@@ -1,0 +1,380 @@
+.app-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  color: #162235;
+  background: #eef3f8;
+}
+
+.app-card {
+  width: min(100%, 520px);
+  overflow: hidden;
+  border: 1px solid rgb(11 92 171 / 12%);
+  border-radius: 18px;
+  background: #f8fafc;
+  box-shadow:
+    0 18px 55px rgb(21 39 64 / 18%),
+    0 3px 12px rgb(21 39 64 / 8%);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+  color: white;
+  background: #0b5cab;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-logo {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  background: white;
+  border-radius: 10px;
+}
+
+.eyebrow {
+  margin: 0 0 2px;
+  color: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.accent-eyebrow {
+  color: #0b5cab;
+  opacity: 1;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  color: #162235;
+  font-size: clamp(1.45rem, 5vw, 1.85rem);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.icon-button,
+.primary-button,
+.secondary-button,
+.text-button,
+.inline-button {
+  border: 0;
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.icon-button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: rgb(255 255 255 / 85%);
+  background: rgb(255 255 255 / 12%);
+  border-radius: 8px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.icon-button:hover {
+  background: rgb(255 255 255 / 22%);
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 18px;
+  color: #718096;
+  background: white;
+  border-bottom: 1px solid #e5eaf0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  background: #718096;
+  border-radius: 50%;
+}
+
+.connection-status.connected .status-dot {
+  background: #16834b;
+  box-shadow: 0 0 0 3px rgb(22 131 75 / 12%);
+}
+
+.connection-status.connecting .status-dot {
+  background: #e59b14;
+  box-shadow: 0 0 0 3px rgb(229 155 20 / 13%);
+}
+
+.connection-status.disconnected .status-dot {
+  background: #d81e05;
+}
+
+.status-context {
+  margin-left: auto;
+  color: #718096;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.intro-panel,
+.scanner-panel,
+.result-panel {
+  padding: clamp(24px, 7vw, 40px);
+}
+
+.intro-panel {
+  text-align: center;
+}
+
+.brand-mark {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 22px;
+  place-items: center;
+  color: white;
+  background: #d81e05;
+  border-radius: 16px;
+  box-shadow: 0 7px 16px rgb(216 30 5 / 20%);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  transform: rotate(-8deg);
+}
+
+.intro-copy {
+  max-width: 360px;
+  margin: 14px auto 28px;
+  color: #718096;
+  line-height: 1.55;
+}
+
+.primary-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  color: white;
+  background: #d81e05;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.primary-button:hover {
+  background: #b61905;
+  transform: translateY(-1px);
+}
+
+.primary-button span {
+  font-size: 18px;
+  line-height: 0.7;
+}
+
+.panel-heading,
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.text-button {
+  flex: 0 0 auto;
+  padding: 4px 0;
+  color: #718096;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.text-button:hover {
+  color: #0b5cab;
+}
+
+.camera-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #08111d;
+  border-radius: 12px;
+}
+
+.camera-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scan-guide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(68%, 250px);
+  aspect-ratio: 1;
+  border: 2px solid #d81e05;
+  border-radius: 18px;
+  box-shadow: 0 0 0 999px rgb(0 0 0 / 30%);
+  transform: translate(-50%, -50%);
+}
+
+.camera-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  left: 16px;
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+  text-shadow: 0 1px 6px #000;
+}
+
+.scanner-actions {
+  margin-top: 14px;
+}
+
+.secondary-button {
+  width: 100%;
+  padding: 11px 14px;
+  color: #0b5cab;
+  background: #eaf3fc;
+  border: 1px solid rgb(11 92 171 / 20%);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.secondary-button:hover {
+  background: #d9eafa;
+  transform: translateY(-1px);
+}
+
+.status-message {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 13px;
+  color: #7d2118;
+  background: #fff0ed;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.status-message strong {
+  color: #b61905;
+}
+
+.inline-button {
+  justify-self: start;
+  margin-top: 3px;
+  padding: 0;
+  color: #b61905;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.received-badge {
+  padding: 5px 9px;
+  color: #16834b;
+  background: rgb(22 131 75 / 10%);
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.result-card {
+  margin-bottom: 14px;
+  padding: 13px;
+  background: white;
+  border: 1px solid #e5eaf0;
+  border-radius: 12px;
+}
+
+.detail-label {
+  color: #718096;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.result-text {
+  min-height: 120px;
+  max-height: 300px;
+  margin: 9px 0 0;
+  overflow: auto;
+  padding: 12px;
+  color: #162235;
+  background: #f8fafc;
+  border: 1px solid #e5eaf0;
+  border-radius: 8px;
+  font:
+    0.85rem / 1.5 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .app-card {
+    width: 100%;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+}
