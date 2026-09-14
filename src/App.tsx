@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 import QrScanner from "qr-scanner";
 import "./App.css";
 import { appRoute } from "./router";
@@ -57,22 +63,35 @@ function App() {
   const wsRef = useRef<WebSocket | null>(null);
   const { roomId } = appRoute.useParams();
 
-  useEffect(() => {
+  const connectWebSocket = useCallback(() => {
+    wsRef.current?.close();
+    setConnectionStatus("connecting");
+
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const socket = new WebSocket(
       `${protocol}//${window.location.host}/ws/${roomId}`,
     );
     wsRef.current = socket;
 
-    socket.onopen = () => setConnectionStatus("connected");
-    socket.onclose = () => setConnectionStatus("disconnected");
-    socket.onerror = () => setConnectionStatus("disconnected");
-
-    return () => {
-      socket.close();
-      wsRef.current = null;
+    socket.onopen = () => {
+      if (wsRef.current === socket) setConnectionStatus("connected");
+    };
+    socket.onclose = () => {
+      if (wsRef.current === socket) setConnectionStatus("disconnected");
+    };
+    socket.onerror = () => {
+      if (wsRef.current === socket) setConnectionStatus("disconnected");
     };
   }, [roomId]);
+
+  useEffect(() => {
+    connectWebSocket();
+
+    return () => {
+      wsRef.current?.close();
+      wsRef.current = null;
+    };
+  }, [connectWebSocket]);
 
   useEffect(() => {
     if (screen !== "scanning" || !videoRef.current) {
@@ -181,6 +200,19 @@ function App() {
           <span className="status-dot" />
           <span>{connectionLabels[connectionStatus]}</span>
           <span className="status-context">Sala de despacho</span>
+          {connectionStatus !== "connected" && (
+            <button
+              className="text-button"
+              type="button"
+              onClick={connectWebSocket}
+              disabled={connectionStatus === "connecting"}
+              aria-label="Reconectar con la sala de despacho"
+            >
+              {connectionStatus === "connecting"
+                ? "Reconectando…"
+                : "Reconectar"}
+            </button>
+          )}
         </div>
 
         {screen === "home" && (
